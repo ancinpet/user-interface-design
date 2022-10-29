@@ -9,7 +9,7 @@
 
 `npm install -g @angular/cli`
 
-`git clone https://gitlab.fit.cvut.cz/bydzoto1/ni-nur-prototype.git`
+`git clone https://github.com/ancinpet/user-interface-design.git`
 
 `cd ni-nur-prototype`
 
