@@ -1,0 +1,44 @@
+
+<router-outlet></router-outlet>
+<div class="spacer"></div>
+<mat-toolbar *ngIf="showNavPanel()" class="menu-toolbar">
+
+  <div class="btn-group">
+    <button mat-icon-button routerLink="/">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button class="btn-text" mat-button routerLink="/">
+      Home
+    </button>
+    
+  </div>
+
+  <div class="btn-group">
+    <button mat-icon-button routerLink="/profile">
+      <mat-icon>person</mat-icon>
+    </button>
+    <button class="btn-text" mat-button routerLink="/profile">
+      Profile
+    </button>
+
+  </div>
+
+  <div class="btn-group">
+    <button mat-icon-button routerLink="/search">
+      <mat-icon>search</mat-icon>
+    </button>
+    <button class="btn-text" mat-button routerLink="/search">
+      Search
+    </button>
+  </div>  
+
+  <div class="btn-group">
+    <button mat-icon-button routerLink="/tinder-search">
+      <img class="tinder-image" alt="Tinder search" src="/assets/tinder_logo.png">
+    </button>
+    <button class="btn-text" mat-button routerLink="/tinder-search">
+      Tinder search
+    </button>
+  </div>
+  
+</mat-toolbar>
