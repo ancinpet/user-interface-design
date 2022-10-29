@@ -1,0 +1,80 @@
+<app-header-panel>Find your perfect car</app-header-panel>
+
+<div class="container">
+  <img src="assets/logo.png">
+
+  <form class="search-inputs" [formGroup]="searchForm" (ngSubmit)="onClick()" #searchFormDirective="ngForm">
+    <div>
+      <app-search-selection
+              [parentFormGroup]="searchForm"
+              controlName="brand"
+              label="Brand"
+              [options]="brands"
+      ></app-search-selection>
+    </div>
+
+    <div>
+      <app-search-selection
+              [parentFormGroup]="searchForm"
+              controlName="model"
+              label="Model"
+              [options]="models"
+      ></app-search-selection>
+    </div>
+
+    <div>
+      <app-search-selection
+              label="Engine"
+              controlName="engine"
+              [parentFormGroup]="searchForm"
+              [options]="engines"
+      ></app-search-selection>
+    </div>
+
+    <div>
+      <app-search-selection
+              label="Gearbox"
+              [parentFormGroup]="searchForm"
+              controlName="gearbox"
+              [options]="gearboxes"
+      ></app-search-selection>
+    </div>
+
+    <div class="line">
+      <mat-form-field>
+        <input type="number"
+                matInput
+                placeholder="Price From (CZK)"
+                formControlName="priceFrom">
+      </mat-form-field>
+
+      <mat-form-field >
+        <input type="number"
+                matInput
+                placeholder="Price To (CZK)"
+                formControlName="priceTo">
+      </mat-form-field>
+    </div>
+
+    <div class="line">
+      <mat-form-field>
+        <input type="number"
+                matInput
+                placeholder="Mileage From (KM)"
+                formControlName="mileageFrom">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number"
+                matInput
+                placeholder="Mileage To (KM)"
+                formControlName="mileageTo">
+      </mat-form-field>
+    </div>
+
+    <div id="search-button">
+      <button type="submit" mat-raised-button color="primary">Search</button>
+    </div>
+  </form>
+
+</div>

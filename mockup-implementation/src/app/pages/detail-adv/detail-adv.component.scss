@@ -1,0 +1,104 @@
+@import '~@angular/material/theming';
+
+.card {
+
+  height: 120px;
+  width: 85%;
+
+  margin-top: 6px;
+  margin-bottom: 6px;
+
+  display: flex;
+  justify-content: space-between;
+
+  .text {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 5px
+  }
+
+  .img-container {
+    width: 30%;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .action-buttons {
+    justify-content: flex-end;
+
+    .btn-red {
+      color: mat-color($mat-red, A400);
+    }
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep mat-expansion-panel-header {
+  padding-left: 1.4em !important;
+}
+
+.sellerLink{
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.action-btn {
+  margin: 1rem;
+}
+
+.favorite-btn {
+  background-color: mat-color($mat-amber, 800);
+}
+
+.favorite-btn-diabled {
+  color: mat-color($mat-amber, 800) !important;
+}
+
+.gallery-container { 
+  position: relative;
+}
+
+.gallery-elements-left {
+  position: absolute;
+  left: 0%;
+  top: 37%;
+  transform: translate(0%, -100%);
+  transform: scale(0.7);
+}
+
+.gallery-elements-right {
+  position: absolute;
+  right: 0%;
+  top: 37%;
+  transform: translate(0%, -100%);
+  transform: scale(0.7);
+}
+
+.gallery-elements-bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 2em;
+  display: flex;
+  justify-content: center;
+  transform: scale(0.75);
+}

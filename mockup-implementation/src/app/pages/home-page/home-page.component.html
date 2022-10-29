@@ -1,0 +1,21 @@
+
+<div class="container">
+
+    <ng-container *ngIf="canShowHistory(); else elseTemplate">
+        <img src="assets/logo.png" alt="logo">
+        <div class="spacer"></div>
+        <h1>Recent search history</h1>
+        <button mat-button *ngFor="let item of history" (click)="goToSearch(item.timestamp)">
+            <mat-icon>youtube_searched_for</mat-icon>
+            {{item.timestamp | date :'medium'}}
+        </button>
+        
+    </ng-container>
+    
+    <ng-template #elseTemplate>
+        <img src="assets/logo.png" alt="logo">
+        <div class="spacer"></div>
+        <span class="msg">Welcome!</span>
+    </ng-template>
+
+</div>

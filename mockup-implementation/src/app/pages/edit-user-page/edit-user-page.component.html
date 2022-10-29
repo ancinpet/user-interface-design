@@ -1,0 +1,19 @@
+<app-header-panel>Edit personal information</app-header-panel>
+
+<div class="form-container">
+    <app-user-editor 
+        [user]="user" 
+        [events]="submit$.asObservable()" 
+        (editedUser)="updateUser($event)">
+    </app-user-editor>
+
+<span class="row">
+    <button mat-raised-button color="primary" (click)="submit$.next()">OK</button>
+    <button mat-raised-button routerLink="..">Cancel</button>
+</span>
+
+</div>
+
+
+
+

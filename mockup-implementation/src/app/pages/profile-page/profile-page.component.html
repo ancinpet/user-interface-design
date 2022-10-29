@@ -1,0 +1,48 @@
+<app-header-panel>Profile</app-header-panel>
+
+
+<div class="info">
+    <span class="row">
+        <mat-icon>person</mat-icon>
+        <div class="text">{{user.firstname}} {{user.surname}}</div>
+    </span>
+
+    <span class="row">
+        <mat-icon>phone</mat-icon>
+        <ng-container *ngIf="isLoggedUser; else elseTemplate1">
+            <div class="text">{{user.telephone}}</div>
+        </ng-container>
+        <ng-template #elseTemplate1>
+            <a class="text" mat-button color="primary" href="tel:{{user.telephone}}">{{user.telephone}}</a>
+        </ng-template> 
+    </span>
+
+    <span class="row">
+        <mat-icon>email</mat-icon>
+        <ng-container *ngIf="isLoggedUser; else elseTemplate2">
+            <div class="text">{{user.email}}</div>
+        </ng-container>
+        <ng-template #elseTemplate2>
+            <a class="text" mat-button color="primary" href="mailto:{{user.email}}" target="_blank" rel="noopener noreferrer">{{user.email}}</a>
+        </ng-template>
+    </span>
+</div>
+
+
+<mat-divider></mat-divider>
+<div class="buttons">
+    <ng-container *ngIf="isLoggedUser; else elseTemplate3">
+        <button mat-raised-button routerLink="/new-advert" color="primary">Add new advertisment</button>
+        <button mat-raised-button routerLink="favorites">Favourite advertisments</button>
+        <button mat-raised-button routerLink="adverts">My advertisments</button>
+        <button mat-raised-button routerLink="edit">Edit personal information</button>
+    </ng-container>
+
+    <ng-template #elseTemplate3>
+        <button mat-raised-button color="primary" routerLink="adverts">Users advertisments</button>
+    </ng-template>
+    
+    
+</div>
+
+

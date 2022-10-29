@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+
+#dislike-button {
+  background-color: mat-color($mat-red, 800) !important;
+}
+
+#info-button {
+  background-color: mat-color($mat-indigo, 800) !important;
+}
+
+#favorite-button {
+  background-color: mat-color($mat-amber, 800) !important;
+}
+
+#like-button {
+  background-color: mat-color($mat-green, 800) !important;
+}
+
+.button-close {  
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  transform: scale(1.3);
+}

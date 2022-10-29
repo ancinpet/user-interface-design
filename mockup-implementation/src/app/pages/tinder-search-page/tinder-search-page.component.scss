@@ -1,0 +1,66 @@
+@import '~@angular/material/theming';
+
+.help-button-pos {
+  position: absolute;
+  display: flex;
+  right: 1%;
+  top: 1%;
+  transform: scale(1.3);
+}
+
+.gas-chip-list {
+  margin: auto;
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 90%;
+}
+
+.car-chip-list {
+  margin: auto;
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 90%;
+}
+
+.price-slider {
+  margin: auto;
+  margin-top: 10%;
+  margin-left: 10%;
+  width: 80%;
+}
+
+.price-form {
+  margin: auto;
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 42.5%;
+}
+
+.age-slider {
+  margin-bottom: 5%;
+  margin-left: 70px;
+  transform: scale(2);
+}
+
+.age-image {
+  margin-top: 7%;
+  z-index: -1;
+  width: 100%;
+  transform: scale(1);
+}
+
+.age-button {
+  position: absolute;
+  bottom: 15%;
+  transform: scale(1.5);
+}
+
+.age-text {
+  position: absolute;
+  left: 5%;
+}
+
+.make-primary {
+  background-color: mat-color($mat-indigo, 500) !important;
+  color: white;
+}

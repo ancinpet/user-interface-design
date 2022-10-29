@@ -1,0 +1,14 @@
+<div class="form-container">
+
+    <img src="assets/logo.png" alt="logo">
+
+    <app-user-editor 
+        [events]="submit$.asObservable()" 
+        (editedUser)="createUser($event)">
+    </app-user-editor>
+
+    <span class="row">
+        <button mat-raised-button color="primary" (click)="submit$.next()">Register</button>
+    </span>
+
+</div>

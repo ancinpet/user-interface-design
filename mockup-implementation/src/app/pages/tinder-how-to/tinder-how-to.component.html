@@ -1,0 +1,51 @@
+<button class="button-close" mat-button matSuffix mat-icon-button aria-label="Close" (click)="closeComponent()">
+  <mat-icon>close</mat-icon>
+</button>
+<br>
+<mat-card-title>How to use Tinder search</mat-card-title>
+<br>
+<mat-card-subtitle>Guide</mat-card-subtitle>
+<p>
+  Tinder Search is a simple function that lets you quickly find what you are looking for using your previous decisions. To start, set your preferences and click on the search button. After, you will be shown one car and decide whether you like it, dislike it, or want to save it into your favorites. As you look at more cars, our application learns and will provide you with better results.
+</p>
+<mat-divider></mat-divider>
+<mat-grid-list cols="4" rowHeight="5.5em">
+  <mat-grid-tile [colspan]="1">
+    <button mat-fab id="like-button" color="primary">
+      <mat-icon>thumb_up</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3">
+    <span style="font-size: 1.3em;">Show me more cars like this&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="4" rowHeight="5.5em">
+  <mat-grid-tile [colspan]="1">
+    <button mat-fab id="favorite-button" color="primary">
+      <mat-icon>star_rate</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3">
+    <span style="font-size: 1.3em;">Add this car to favorites and show me more cars like this</span>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="4" rowHeight="5.5em">
+  <mat-grid-tile [colspan]="1">
+    <button mat-fab id="info-button" color="warn">
+      <mat-icon>info_outline</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3">
+    <span style="font-size: 1.3em;">Show me the details and the seller of the car</span>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="4" rowHeight="5.5em">
+  <mat-grid-tile [colspan]="1">
+    <button mat-fab id="dislike-button">
+      <mat-icon>thumb_down</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3">
+    <span style="font-size: 1.3em;">Show me less cars like this&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  </mat-grid-tile>
+</mat-grid-list>

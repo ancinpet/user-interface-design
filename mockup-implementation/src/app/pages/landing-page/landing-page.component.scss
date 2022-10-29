@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+
+.container {
+
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    button {
+        width: 225px;
+    }
+
+    span{
+        margin: 1em;
+    }
+
+    form{
+        max-width: 225px;
+    }
+
+    .error {
+        color: mat-color($mat-red, 500);
+        overflow: hidden;
+        transition: all .5s ease-in-out;
+
+        &.collapsed {
+            height: 0;
+        }
+
+        &.expanded {
+            height: 1em;
+            padding-bottom: 1.25em;
+        }
+    }
+}

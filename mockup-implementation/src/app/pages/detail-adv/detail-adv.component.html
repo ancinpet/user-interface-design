@@ -1,0 +1,53 @@
+<app-header-panel>{{adv.title}}</app-header-panel>
+
+<mat-card>
+    <div class="gallery-container">
+        <img
+                mat-card-image
+                [src] = adv.photosUrls[currentImageIndex]
+                alt="Photo of vehicle"
+                (click)="setNextImageIndex()">
+
+        <button class="gallery-elements-left" mat-mini-fab color="primary" (click)="setPrevImageIndex()">
+            <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button class="gallery-elements-right" mat-mini-fab color="primary" (click)="setNextImageIndex()">
+            <mat-icon>navigate_next</mat-icon>
+        </button>
+
+        <mat-radio-group 
+            class="gallery-elements-bottom" 
+            [(ngModel)]="currentImageIndex">
+                <mat-radio-button 
+                    color="primary" 
+                    *ngFor="let image of adv.photosUrls; let i = index" 
+                    [value]="i">
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-card-content>
+        <h1 class="header-format">{{adv.title}} {{adv.subtitle}}</h1>
+        <h2>{{adv.price}}</h2>
+        Seller: <button mat-button color="primary" (click)="goToSeller()" class="sellerLink">{{getSeller().firstname}} {{getSeller().surname}}</button>        
+        <p class="text-format"
+            *ngFor="let detail of adv.mainDetails">
+            {{detail[0]}}:<span class="detail-format">{{detail[1]}}</span>
+        </p>
+    </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="isFavorite(); else elseTemplate">
+    <button mat-raised-button color="accent" (click)="markAsFavorite()" class="action-btn favorite-btn-diabled" disabled>Favorite addvert</button>
+</ng-container>
+
+<ng-template #elseTemplate>
+    <button mat-raised-button color="accent" (click)="markAsFavorite()" class="action-btn favorite-btn">Add to favorites</button>
+</ng-template>
+
+<mat-accordion class="example-headers-align" multi>
+    <app-expansion-panel [adv]="adv" content="This car is very safe" title="Safety"></app-expansion-panel>
+    <app-expansion-panel [adv]="adv" content="This car has a good interior" title="Interior"></app-expansion-panel>
+    <app-expansion-panel [adv]="adv" content="This car has a good infotainment" title="Infotainment"></app-expansion-panel>
+    <app-expansion-panel [adv]="adv" content="This car has a good exterior" title="Exterior"></app-expansion-panel>
+    <app-expansion-panel [adv]="adv" title="Extra"></app-expansion-panel>
+</mat-accordion>

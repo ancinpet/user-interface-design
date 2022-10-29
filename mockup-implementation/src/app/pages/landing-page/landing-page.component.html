@@ -1,0 +1,29 @@
+<div class="container">
+
+    <img src="assets/logo.png" alt="logo">
+
+    <form class="login-form" (ngSubmit)="tryToLogin()">
+        <mat-form-field appearance="outline">
+            <mat-icon matPrefix>email</mat-icon>
+            <mat-label>E-mail</mat-label>
+            <input matInput placeholder="E-mail" name="email" [(ngModel)]="data.email">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="data.password">
+        </mat-form-field>
+
+        <input type="submit" value="" hidden>
+    </form>
+    
+    <span class="error" [ngClass]="{'collapsed': !hasError, 'expanded': hasError}">
+        Incorrect email or password
+    </span>
+
+    <button mat-raised-button color="primary" (click)="tryToLogin()">Log in</button>
+    <span>or</span>
+    <button mat-raised-button routerLink="/register">Sign up</button>
+    
+</div>

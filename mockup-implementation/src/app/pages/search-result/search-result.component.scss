@@ -1,0 +1,15 @@
+#advs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+app-brief-adv {
+  margin-top: 2em;
+}
+
+#sorting-selector {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
+}

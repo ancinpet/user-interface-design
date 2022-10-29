@@ -1,0 +1,54 @@
+<app-header-panel>Tinder results</app-header-panel>
+
+<button mat-icon-button (click)="openBottomSheet()" class="help-button-pos" color="primary" aria-label="How to use tinder search">
+  <mat-icon>help_outline</mat-icon>
+</button>
+
+<mat-card>
+  <div class="gallery-container">
+    <img 
+      mat-card-image 
+      [src]=currentImage 
+      alt="Photo of vehicle" 
+      (click)="next()">
+    <button class="gallery-elements-left" mat-mini-fab color="primary" (click)="before()">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button class="gallery-elements-right" mat-mini-fab color="primary" (click)="next()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+    <mat-radio-group 
+      class="gallery-elements-bottom" 
+      [(ngModel)]="currentImageIndex" 
+      (change)="updateImage()">
+        <mat-radio-button
+          color="primary"
+          *ngFor="let image of currentAdvert.photosUrls; let i = index" 
+          [value]="i">
+        </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-card-content>
+    <h1 class="header-format">{{currentAdvert.title}} {{currentAdvert.subtitle}}</h1>
+    <h2>{{currentAdvert.price}}</h2>
+    <h3 class="text-format"
+      *ngFor="let detail of currentAdvert.mainDetails">
+      {{detail[0]}}:<span class="detail-format">{{detail[1]}}</span>
+    </h3>
+  </mat-card-content>
+</mat-card>
+
+<div class="button-rate-group">
+  <button mat-fab id="dislike-button" (click)="nextAdvert('Vehicle disliked!')">
+    <mat-icon>thumb_down</mat-icon>
+  </button>
+  <button mat-fab id="info-button" color="warn" (click)="openDetail()">
+    <mat-icon>info_outline</mat-icon>
+  </button>
+  <button mat-fab id="favorite-button" color="primary" (click)="favClicked()">
+    <mat-icon>star_rate</mat-icon>
+  </button>
+  <button mat-fab id="like-button" color="primary" (click)="nextAdvert('Vehicle liked!')">
+    <mat-icon>thumb_up</mat-icon>
+  </button>
+</div>

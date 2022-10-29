@@ -1,0 +1,138 @@
+<app-header-panel>Tinder search</app-header-panel>
+
+<button mat-icon-button (click)="openBottomSheet()" class="help-button-pos" color="primary" aria-label="How to use tinder search">
+  <mat-icon>help_outline</mat-icon>
+</button>
+
+<mat-form-field class="car-chip-list">
+  <mat-chip-list #chipListCar aria-label="Car brand selection">
+    <mat-chip class="make-primary"
+      *ngFor="let car of cars"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="removeCar(car)"
+      (click)="removeCar(car)">
+      {{car}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      [hidden]="carInputHidden"
+      placeholder="Select car brands"
+      #carInput
+      [formControl]="carCtrl"
+      [matAutocomplete]="autoCar"
+      [matChipInputFor]="chipListCar"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addCar($event)">
+  </mat-chip-list>
+  <mat-autocomplete #autoCar="matAutocomplete" (optionSelected)="selectedCar($event)">
+    <mat-option *ngFor="let car of filteredCars | async" [value]="car">
+      <div (click)="optionClickedCar($event, car)">
+          {{car}}
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-form-field class="gas-chip-list">
+  <mat-chip-list #chipListFuel aria-label="Fuel type selection">
+    <mat-chip class="make-primary"
+      *ngFor="let fuel of fuels"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="removeFuel(fuel)"
+      (click)="removeFuel(fuel)">
+      {{fuel}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      [hidden]="fuelInputHidden"
+      placeholder="Select fuel types"
+      #fuelInput
+      [formControl]="fuelCtrl"
+      [matAutocomplete]="autoFuel"
+      [matChipInputFor]="chipListFuel"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addFuel($event)">
+  </mat-chip-list>
+  <mat-autocomplete #autoFuel="matAutocomplete" (optionSelected)="selectedFuel($event)">
+    <mat-option *ngFor="let fuel of filteredFuels | async" [value]="fuel">
+      <div (click)="optionClickedFuel($event, fuel)">
+          {{fuel}}
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-form-field class="price-form">
+  <mat-label>From</mat-label>
+  <input
+    type="text"
+    (change)="priceChanged()"
+    [(ngModel)]="priceFromValue"
+    matInput
+    [formControl]="priceFromCtrl"
+    [errorStateMatcher]="matcherFrom"
+    [matAutocomplete]="autoPriceFrom">
+  <mat-error *ngIf="priceDiffErrorC">
+    This price is higher than the min price!
+  </mat-error>
+  <mat-error *ngIf="priceFromErrorC">
+    The value is not a valid price!
+  </mat-error>
+  <mat-autocomplete #autoPriceFrom="matAutocomplete" (optionSelected)="priceChanged()">
+    <mat-option *ngFor="let price of filteredPriceFrom | async" [value]="price">
+      {{price}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-form-field class="price-form">
+  <mat-label>To</mat-label>
+  <input
+  type="text"
+  (change)="priceChanged()"
+  [(ngModel)]="priceToValue"
+  matInput
+  [formControl]="priceToCtrl"
+  [errorStateMatcher]="matcherTo"
+  [matAutocomplete]="autoPriceTo">      
+  <mat-error *ngIf="priceDiffErrorC">
+    This price is lower than the max price!
+  </mat-error>
+  <mat-error *ngIf="priceToErrorC">
+    The value is not a valid price!
+  </mat-error>
+  <mat-autocomplete #autoPriceTo="matAutocomplete" (optionSelected)="priceChanged()">
+    <mat-option *ngFor="let price of filteredPriceTo | async" [value]="price">
+      {{price}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-grid-list cols="10" rowHeight="300px">
+  <mat-grid-tile [colspan]="3">
+    <mat-slider
+    color="primary"
+    class="age-slider"
+    thumbLabel
+    [(ngModel)]="ageValue"
+    [displayWith]="formatSliderLabel"
+    [vertical]="true"
+    [step]="1"
+    [invert]="true"
+    min="0"
+    max="120">
+    </mat-slider>
+  </mat-grid-tile>
+  <h2 class="mat-display-1" class="age-text">Car age</h2>
+  <mat-grid-tile [colspan]="3">
+    <img class="age-image" alt="Car age chart" src="/assets/cars.png">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4">
+    <button mat-fab color="primary" aria-label="Search" class="age-button" routerLink="/tinder-result">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
+

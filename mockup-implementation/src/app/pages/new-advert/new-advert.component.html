@@ -1,0 +1,128 @@
+<app-header-panel>New advertisement</app-header-panel>
+
+<mat-vertical-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup" label="Upload photos">
+    <form hidden="true" [formGroup]="firstFormGroup">
+      <input type="text" [(ngModel)]="adImage" matInput formControlName="imageControl" required>
+    </form>    
+    <input #fileInput hidden="true" type="file" (change)="uploaded()" accept=".jpg, .png, .svg, .jpeg, .bmp"/>
+    <button mat-fab color="primary" (click)="fileInput.click()"><mat-icon>add_to_photos</mat-icon></button>
+    <button mat-button color="primary" (click)="fileInput.click()"><span class="photo-text">Upload photos</span></button>
+    <br>
+    <br>
+    <button mat-fab color="primary" (click)="uploaded()"><mat-icon>add_a_photo</mat-icon></button>
+    <button mat-button color="primary" (click)="uploaded()"><span class="photo-text">Take photos</span></button>
+    <br>
+    <br>
+    <mat-error *ngIf="firstFormGroup.controls.imageControl.hasError('required')">
+      Please upload some photos first
+    </mat-error>
+    <div class="gallery-container" *ngIf="!hideUpload">
+      <img class="image-container" [src]=currentImage alt="Photo of vehicle" (click)="next()">
+      <button class="gallery-elements-left" mat-mini-fab color="primary" (click)="before()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button class="gallery-elements-right" mat-mini-fab color="primary" (click)="next()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+      <mat-radio-group class="gallery-elements-bottom" [(ngModel)]="currentImageIndex" (change)="updateImage()">
+        <mat-radio-button color="primary" *ngFor="let image of photos; let i = index" [value]="i"></mat-radio-button>
+      </mat-radio-group>      
+    </div>
+    <mat-progress-bar *ngIf="!hideUpload && spinUpload" mode="determinate" value="{{spinProgress}}"></mat-progress-bar>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Add details">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field class="extra-details">
+        <mat-label>Car brand</mat-label>
+        <input [(ngModel)]="adBrand" type="text" matInput formControlName="carControl" [matAutocomplete]="autoCar" required>
+        <mat-autocomplete #autoCar="matAutocomplete">
+          <mat-option *ngFor="let car of carOptions | async" [value]="car">
+            {{car}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Car model</mat-label>
+        <input [(ngModel)]="adModel" type="text" matInput formControlName="modelControl" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Fuel type</mat-label>
+        <input [(ngModel)]="adFuel" type="text" matInput formControlName="fuelControl" [matAutocomplete]="fuelAuto" required>
+        <mat-autocomplete #fuelAuto="matAutocomplete">
+          <mat-option *ngFor="let fuel of fuelOptions | async" [value]="fuel">
+            {{fuel}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Fuel usage</mat-label>
+        <span matSuffix>&nbsp;litres / 100 km</span>
+        <input [(ngModel)]="adUsage" type="text" matInput formControlName="usageControl">
+        <mat-error *ngIf="secondFormGroup.controls.usageControl.hasError('notUsage')">
+          Fuel usage has to be a positive number (e.g. 4.7 litres / 100 km)
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Engine info (type, displacement, cylinders)</mat-label>
+        <input [(ngModel)]="adEngine" type="text" matInput formControlName="engineControl">
+        <mat-hint align="start">e.g. 1.9 TDi - 4</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Year of manufacture</mat-label>
+        <input [(ngModel)]="adYear" type="text" matInput formControlName="manuControl" required>
+        <mat-error *ngIf="secondFormGroup.controls.manuControl.hasError('notYear') && !secondFormGroup.controls.manuControl.hasError('required')">
+          Year of manufacture has to be truthful (e.g. 1999)
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Price</mat-label>
+        <span matSuffix>&nbsp;CZK</span>
+        <input [(ngModel)]="adPrice" (change)="priceChanged()" type="text" matInput formControlName="priceControl" required>
+        <mat-error *ngIf="secondFormGroup.controls.priceControl.hasError('notPrice') && !secondFormGroup.controls.priceControl.hasError('required')">
+          Price should be a positive integer (e.g. 47000 CZK)
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="extra-details">
+        <mat-label>Mileage</mat-label>
+        <span matSuffix>&nbsp;km</span>
+        <input [(ngModel)]="adMile" (change)="mileChanged()" type="text" matInput formControlName="mileControl" required>
+        <mat-error *ngIf="secondFormGroup.controls.mileControl.hasError('notMileage') && !secondFormGroup.controls.mileControl.hasError('required')">
+          Mileage should be a positive integer (e.g. 16050 km)
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-error *ngIf="secondFormGroup.controls.mileControl.hasError('required') ||
+                        secondFormGroup.controls.priceControl.hasError('required') ||
+                        secondFormGroup.controls.manuControl.hasError('required') ||
+                        secondFormGroup.controls.modelControl.hasError('required') ||
+                        secondFormGroup.controls.fuelControl.hasError('required') ||
+                        secondFormGroup.controls.carControl.hasError('required')">
+        Fields marked with * are required
+      </mat-error>
+    </form>
+  </mat-step>
+    <mat-step label="Add additional info">
+    <mat-form-field *ngFor="let details of extraDetails; let index = index;" class="extra-details">
+      <input matInput name={{index}} (change)="additionalChanged(index)" placeholder="Additional detail (one per line)" [(ngModel)]="details.value">
+      <mat-icon *ngIf="extraDetails.length > 1 && index < extraDetails.length - 1" matSuffix style="cursor: pointer;" (click)="removeCurrentDetail(index)">delete</mat-icon>
+    </mat-form-field> 
+    <br>
+    <br>
+  </mat-step>
+  <mat-step label="Add advertisement">
+    <br>
+    <p>Are you sure you want to add this advertisement?</p>
+    <p>By clicking on Add advertisement, you agree to the <a routerLink="/new-advert" (click)="openTOSSheet()">Terms of Service</a> and give us all rights to the information you provided in this form.</p>
+    <br>
+    <br>
+    <button mat-raised-button class="next-button" color="primary" (click)="addAdvertToDB()" routerLink="/profile">Add advertisement</button>
+  </mat-step>
+</mat-vertical-stepper>

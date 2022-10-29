@@ -1,0 +1,13 @@
+<app-header-panel>Search result</app-header-panel>
+<div id="sorting-selector">
+  <mat-form-field appearance="fill">
+    <mat-label>Sort By</mat-label>
+    <mat-select [formControl]="sortCriteria">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<app-ad-panel-list [adverts]=advs></app-ad-panel-list>
