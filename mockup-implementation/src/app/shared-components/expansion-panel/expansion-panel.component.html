@@ -1,0 +1,9 @@
+<mat-expansion-panel (opened)="panelState = true"
+                     (closed)="panelState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{title}}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{content}}</p>
+</mat-expansion-panel>

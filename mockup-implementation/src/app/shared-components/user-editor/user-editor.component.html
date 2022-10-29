@@ -1,0 +1,69 @@
+
+<form class="user-form" #userEditForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="myForm">
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-label>Name</mat-label>
+        <!-- [(ngModel)]="data.name" -->
+        <input matInput placeholder="Name" name="name"  formControlName="name">
+        <mat-error *ngIf="myForm.hasError('required', 'name')">
+            Name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-label>Last name</mat-label>
+        <!-- [(ngModel)]="data.lastName" -->
+        <input matInput placeholder="Last name" name="lastName"  formControlName="lastName">
+        <mat-error *ngIf="myForm.hasError('required', 'lastName')">
+            Last name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-label>Password</mat-label>
+        <!-- [(ngModel)]="data.password" -->
+        <input matInput type="password" placeholder="Password" name="password" formControlName="password">
+        <mat-error *ngIf="myForm.hasError('required', 'password')">
+            Password is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-label>Repeat password</mat-label>
+        <!-- [(ngModel)]="data.confirmPassword" -->
+        <input matInput type="password" placeholder="Confirm password" name="confirmPassword" formControlName="confirmPassword" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="myForm.hasError('notSame')">
+            Passwords do not match
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-label>E-mail</mat-label>
+        <!-- [(ngModel)]="data.email"  -->
+        <input matInput placeholder="E-mail" name="email" formControlName="email">
+        <mat-error *ngIf="myForm.hasError('email', 'email') && !myForm.hasError('required', 'email')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="myForm.hasError('required', 'email')">
+            Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>phone</mat-icon>
+        <mat-label>Phone number</mat-label>
+        <!-- [(ngModel)]="data.phone" -->
+        <input matInput placeholder="Phone number" name="phone"  formControlName="phone">
+        <mat-error *ngIf="myForm.hasError('pattern', 'phone') && !myForm.hasError('required', 'phone')">
+            Please enter a valid phone number
+        </mat-error>
+        <mat-error *ngIf="myForm.hasError('required', 'phone')">
+            Phone number is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <input type="submit" value="" hidden>
+</form>

@@ -1,0 +1,13 @@
+
+<div class="adverts-list">
+    <ng-container *ngFor="let advert of adverts">
+        <app-ad-panel
+                [advert]="advert"
+                [type]="type"
+                (actions)="handleAction($event)"
+                (click)="openDetail(advert)"
+        ></app-ad-panel>
+    </ng-container>
+</div>
+
+
